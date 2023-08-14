@@ -1,0 +1,14 @@
+---
+const { name, active,href } = Astro.props;
+---
+
+<a href={href} class=`flex items-center gap-2 text-white/95 ${active ? "activeClass":""}`>
+  <span class="text-3xl">#</span>
+  <span class="text-md">{name}</span>
+</a>
+
+<style>
+  .activeClass {
+    @apply bg-slate-500 px-2 rounded-xl;
+  }
+</style>

@@ -1,6 +1,6 @@
---- 
+---
 interface Props {
-	title: string;
+  title: string;
 }
 
 const { title } = Astro.props;
@@ -8,32 +8,63 @@ const { title } = Astro.props;
 
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description">
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <slot />
+  </body>
 </html>
 <style is:global>
-	:root {
-		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(45deg, rgb(var(--accent)), rgb(var(--accent-light)) 30%, white 60%);
-	}
-	html {
-		font-family: system-ui, sans-serif;
-		background: #13151A;
-		background-size: 224px;
-	}
-	code {
-		font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-			Bitstream Vera Sans Mono, Courier New, monospace;
-	}
+  :root {
+    --saturation-factor: 1;
+    --accent: 136, 58, 234;
+    --accent-light: 224, 204, 250;
+    --accent-dark: 49, 10, 101;
+    --accent-gradient: linear-gradient(
+      45deg,
+      rgb(var(--accent)),
+      rgb(var(--accent-light)) 30%,
+      white 60%
+    );
+    --primary-800: hsl(var(--primary-800-hsl) / 1);
+    --primary-800-hsl: 220 calc(var(--saturation-factor, 1) * 8.1%) 7.3%;
+    --primary-830: hsl(var(--primary-830-hsl) / 1);
+    --primary-830-hsl: 240 calc(var(--saturation-factor, 1) * 4%) 4.9%;
+    --primary-860: hsl(var(--primary-860-hsl) / 1);
+    --primary-860-hsl: 240 calc(var(--saturation-factor, 1) * 7.7%) 2.5%;
+    --primary-900: hsl(var(--primary-900-hsl) / 1);
+    --primary-900-hsl: 0 calc(var(--saturation-factor, 1) * 0%) 0.8%;
+  }
+  html {
+    font-family: system-ui, sans-serif;
+    background: #13151a;
+    background-size: 224px;
+    width: 100%;
+    height: 100%;
+  }
+  body {
+    width: 100%;
+    height: 100%;
+  }
+  code {
+    font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
+      DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
+  }
+  .gridPage{
+    @apply grid grid-cols-[300px_minmax(500px,_1fr)] grid-rows-[48px_1fr]
+  }
+  .header {
+    @apply border-b-black/40 h-12 p-2 px-6 border-b text-white/95 bg-[#313338]
+  }
+  .elevation-low {
+    box-shadow: 1px 0 hsl(var(--primary-900-hsl) / 0.2),
+      0 1.5px 0 hsl(var(--primary-860-hsl) / 0.05),
+      0 2px 0 hsl(var(--primary-900-hsl) / 0.05);
+  }
 </style>

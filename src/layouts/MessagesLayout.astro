@@ -1,0 +1,36 @@
+---
+import Channel from "../components/Channel.astro";
+import Messages from "../components/Messages";
+import Layout from "../layouts/Layout.astro";
+
+const { activeUrl } = Astro.props;
+---
+
+<Layout title="Welcome to Astro.">
+  <main class="w-full h-full flex justify-center">
+    <section class="w-full h-full max-w-4xl gridPage">
+      <aside
+        class="col-start-1 bg-[#282b30] row-span-full flex flex-col rounded-ss-3xl"
+      >
+        <h2 class="header bg-[#282b30]">WebSocket Chat Server</h2>
+        <ul class="flex flex-col gap-4 px-6 mt-4">
+          <Channel
+            name="General"
+            active={activeUrl === "/general"}
+            href="/general"
+          />
+          <Channel
+            name="Canal2"
+            active={activeUrl === "/canal2"}
+            href="/canal2"
+          />
+        </ul>
+      </aside>
+      <header class="col-start-2 header elevation-low"># General</header>
+      <section class="col-start-2 row-start-2 bg-[#313338] h-full px-6">
+        <Messages client:load room={activeUrl.replace("/","")} />
+      </section>
+    </section>
+  </main>
+</Layout>
+
