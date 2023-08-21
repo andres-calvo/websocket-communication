@@ -27,7 +27,7 @@ const { activeUrl } = Astro.props;
         </ul>
       </aside>
       <header class="col-start-2 header elevation-low"># General</header>
-      <section class="col-start-2 row-start-2 bg-[#313338] h-full px-6">
+      <section class="col-start-2 row-start-2 bg-[#313338] h-full px-6 overflow-hidden flex flex-col justify-between pb-4 gap-8 pt-4">
         <Messages client:load room={activeUrl.replace("/","")} />
       </section>
     </section>

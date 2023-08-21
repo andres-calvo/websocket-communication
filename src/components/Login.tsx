@@ -1,11 +1,16 @@
-import { createSignal } from "solid-js";
-
+let inputRef: HTMLInputElement;
 const Login = () => {
-  const [count, setCount] = createSignal(0);
-
   return (
     <div class="w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
-      <form class="space-y-6" action="#">
+      <form class="space-y-6" action="#" onSubmit={(event) => {
+        event.preventDefault()
+        if(inputRef.validity.valid){
+          sessionStorage.setItem("auth",JSON.stringify({
+            username:inputRef.value
+          }))
+          document.location.href="/general"
+        }
+      }}>
         <h5 class="text-xl font-medium text-gray-900 dark:text-white">
           Websocket Chat Server
         </h5>
@@ -17,12 +22,13 @@ const Login = () => {
             Your Name
           </label>
           <input
+            ref={inputRef}
             type="text"
             name="name"
-            id="name"
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
             placeholder="Your Awesome Name"
             required
+            minLength={5}
           />
         </div>
 
@@ -37,4 +43,4 @@ const Login = () => {
   );
 };
 
-export default Login
+export default Login;
